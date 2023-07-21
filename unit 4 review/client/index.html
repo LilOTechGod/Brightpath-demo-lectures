@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assessment-review</title>
+  </head>
+  <body>
+    <section>
+      <h4>Add a song</h4>
+      <form id="add-song">
+        <label for="newArtist">Artist:</label>
+        <input type="text" id="newArtist" placeholder="enter artist" />
+        <br />
+        <br />
+        <label for="newSong">Song:</label>
+        <input type="text" id="newSong" placeholder="enter song" />
+        <br />
+        <br />
+        <button type="submit">Add my song</button>
+      </form>
+    </section>
+
+    <section>
+      <h4>Update song</h4>
+      <form id="update-form">
+        <label for="song-id">Song Id:</label>
+        <input type="number" id="song-id"/>
+        <br />
+        <br /> 
+        <label for="update-artist">Artist:</label>
+        <input
+          type="text"
+          id="update-artist"
+          placeholder="enter artist to update"
+        />
+        <br />
+        <br />
+        <label for="update-song">Song:</label>
+        <input
+          type="text"
+          id="update-song"
+          placeholder="enter song to update"
+        />
+        <br />
+        <br />
+        <button type="submit">Update my song</button>
+      </form>
+    </section>
+    <section id="display-section"></section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
