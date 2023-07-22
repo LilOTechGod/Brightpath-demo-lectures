@@ -1,6 +1,8 @@
+// gives access to our .env file
 require('dotenv').config();
+// fetch the connection string from .env
 const {CONNECTION_STRING} = process.env
-
+// require sequelize
 const Sequelize = require('sequelize');
 // new instance says can i connect to that db yes, you can make request
 const sequelize = new Sequelize(CONNECTION_STRING, {
@@ -12,22 +14,24 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
     }
 })
 
-// we are mocking a user sign in:ferm
+// we are mocking a user sign in:fern to get the data we need
 const userId = 4;
 const clientId = 3;
 
 
 module.exports= {
-    // getUserInfo:(req, res) => {
-    //     sequelize.query(`
-    //     select*from cc_clients as c
-    //     join cc_users as u
-    //     on c.user_id = u.user_id
-    //     where u.user_id = ${userId};
-    //     `)
-    //     .then(dbRes => res.status(200).send(dbRes[0]))
-    //     .catch(err => console.error(err));
-    // },
+    getUserInfo:(req, res) => {
+        sequelize.query(`
+        select*from cc_clients as c
+        join cc_users as u
+        on c.user_id = u.user_id
+        where u.user_id = ${userId};
+        `)
+        .then(dbRes => res.status(200).send(dbRes[0]))
+        .catch(err => console.error(err));
+    },
+
+
     updateUserInfo:(req, res) => {
         let {firstName,lastName,phoneNumber,email,address,city,state,zipCode} = req.body;
 
@@ -59,9 +63,9 @@ module.exports= {
         .catch(err => console.error(err))
     },
     requestAppointment:(req, res) => {
-        let {date, service} = req.body
+        const {date, service} = req.body
         sequelize.query(`
-            insert into cc_appointments(client_id,date,service_type,notes,approved,completed) values(${clientId},'${date}','${service}','please help us. It's urgent',false,false)
+            insert into cc_appointments(client_id,date,service_type,notes,approved,completed) values(${clientId},'${date}','${service}','please help us. Its urgent',false,false)
             returning *;
 
         `)
